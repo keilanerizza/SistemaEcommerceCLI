@@ -1,75 +1,87 @@
-<button type="button" class="btn btn-primary" (click)="novo()">Novo</button>
+<!-- <button type="button" class="btn btn-primary" (click)="novo()">Novo</button>
 <button type="button" class="btn btn-success" (click)="salvar()">Salvar</button>
 <button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>
 <button type="button" class="btn btn-warning" (click)="pesquisar()" style="color:white">Pesquisar</button>
-<br> <br>
+<br> <br> -->
 
-<form class="was-validated form-row">
+<form class="was-validated form-row" #cadastro="ngForm" (ngSubmit)="salvar()">
     <div class="col-md-1 mb-3">
         <label for="txtCodigo">C&oacute;digo</label>
         <input type="text" [(ngModel)]="cliente.codigo" class="form-control" id="txtCodigo" name="txtCodigo" disabled>
     </div>
 
     <div class="col-md-4 mb-3">
-        <label for="txtNome">Nome</label>
-        <input type="text" [(ngModel)]="cliente.nome" class="form-control is-valid" id="txtNome" name="txtNome" required>
-        <div class="invalid-feedback">
+        <label for="nome">Nome</label>
+        <input type="text" #nome="ngModel" minlength="5" [(ngModel)]="cliente.nome" class="form-control is-valid"
+            id="nome" name="nome" required>
+        <div [hidden]="nome.valid" class="invalid-feedback">
             Digite o nome.
         </div>
     </div>
 
     <div class="col-md-4 mb-3">
-        <label for="txtCargo">Cargo</label>
-        <input type="text" [(ngModel)]="cliente.cargo" class="form-control is-valid" id="txtCargo" name="txtCargo" required>
-        <div class="invalid-feedback">
+        <label for="cargo">Cargo</label>
+        <input type="text" #cargo="ngModel" minlength="5" [(ngModel)]="cliente.cargo" class="form-control is-valid"
+            id="cargo" name="cargo" required>
+        <div [hidden]="cargo.valid" class="invalid-feedback">
             Digite o cargo.
         </div>
     </div>
 
     <div class="col-md-5 mb-3">
-        <label for="txtEndereco">Endere&ccedil;o</label>
-        <input type="text" [(ngModel)]="cliente.endereco" class="form-control is-valid" id="txtEndereco" name="txtEndereco" required>
-        <div class="invalid-feedback">
+        <label for="endereco">Endere&ccedil;o</label>
+        <input type="text" #endereco="ngModel" [(ngModel)]="cliente.endereco" class="form-control is-valid"
+            id="endereco" name="endereco" required>
+        <div [hidden]="endereco.valid" class="invalid-feedback">
             Digite o endere&ccedil;o.
         </div>
     </div>
 
     <div class="col-md-3 mb-3">
         <label for="txtCidade">Cidade</label>
-        <input type="text" [(ngModel)]="cliente.cidade" class="form-control is-valid" id="txtCidade" name="txtCidade" required>
+        <input type="text" [(ngModel)]="cliente.cidade" class="form-control is-valid" id="txtCidade" name="txtCidade"
+            required>
         <div class="invalid-feedback">
             Digite a cidade.
         </div>
     </div>
     <div class="col-md-2 mb-2">
-      <label for="txtCep">CEP</label>
-      <input type="text" [(ngModel)]="cliente.cep" class="form-control is-valid" id="txtCep" name="txtCep" required>
-      <div class="invalid-feedback">
-          Digite o CEP.
-      </div>
-  </div>
+        <label for="txtCep">CEP</label>
+        <input type="text" [(ngModel)]="cliente.cep" class="form-control is-valid" id="txtCep" name="txtCep" required>
+        <div class="invalid-feedback">
+            Digite o CEP.
+        </div>
+    </div>
 
-  <div class="col-md-3 mb-3">
-      <label for="txtPais">Pa&iacute;s</label>
-      <input type="text" [(ngModel)]="cliente.pais" class="form-control is-valid" id="txtPais" name="txtPais" required>
-      <div class="invalid-feedback">
-          Digite o Pa&iacute;s.
-      </div>
-  </div>
+    <div class="col-md-3 mb-3">
+        <label for="txtPais">Pa&iacute;s</label>
+        <input type="text" [(ngModel)]="cliente.pais" class="form-control is-valid" id="txtPais" name="txtPais"
+            required>
+        <div class="invalid-feedback">
+            Digite o Pa&iacute;s.
+        </div>
+    </div>
 
-  <div class="col-md-2 mb-2">
-      <label for="txtTelefone">Telefone</label>
-      <input type="text" [(ngModel)]="cliente.telefone" class="form-control is-valid" id="txtTelefone" name="txtTelefone" required>
-      <div class="invalid-feedback">
-          Digite o telefone.
-      </div>
-  </div>
+    <div class="col-md-2 mb-2">
+        <label for="txtTelefone">Telefone</label>
+        <input type="text" [(ngModel)]="cliente.telefone" class="form-control is-valid" id="txtTelefone"
+            name="txtTelefone" required>
+        <div class="invalid-feedback">
+            Digite o telefone.
+        </div>
+    </div>
 
-  <div class="col-md-2 mb-2">
-      <label for="txtFax">Fax</label>
-      <input type="text" [(ngModel)]="cliente.fax" class="form-control is-valid" id="txtFax" name="txtFax" required>
-      <div class="invalid-feedback">
-          Digite o fax.
-      </div>
-  </div>
+    <div class="col-md-2 mb-2">
+        <label for="txtFax">Fax</label>
+        <input type="text" [(ngModel)]="cliente.fax" class="form-control is-valid" id="txtFax" name="txtFax" required>
+        <div class="invalid-feedback">
+            Digite o fax.
+        </div>
+    </div>
+
+    <div class="container">
+        <button type="submit" class="btn btn-success" [disabled]="cadastro.form.invalid">Enviar</button>    
+        <button type="button" class="btn btn-danger" [hidden]="isNew" (click)="excluir()">Excluir</button>
+        <button type="button" class="btn btn-warning" (click)="cancelar()">Cancelar</button>
+    </div>
 </form>

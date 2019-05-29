@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientesService } from '../clientes.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ClienteFormComponent implements OnInit {
   private cliente: Cliente;
   private subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private clienteService: ClientesService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private clienteService: ClientesService) { }
 
   ngOnInit() {
     this.novo();
@@ -46,6 +46,7 @@ export class ClienteFormComponent implements OnInit {
       result = this.clienteService.update(this.cliente);
     }
     this.novo();
+    this.voltar();
     result.subscribe(data => alert('sucesso' +data),
     err => {
       alert("An error occurred " +err);
@@ -63,7 +64,17 @@ export class ClienteFormComponent implements OnInit {
           err => {
             alert("Cliente não removido.");
           });
+          this.novo();
+          this.voltar();
     }
+  }
+
+  cancelar() {
+    this.voltar();
+  }
+
+  voltar() {
+    this.router.navigate(['/clientes']);
   }
 
 }
