@@ -6,10 +6,13 @@ import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 import { ClientesService } from './clientes.service';
 import { ClienteCrudComponent } from './cliente-crud/cliente-crud.component';
+import { FilterPipe } from './filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
-  declarations: [ClienteListComponent, ClienteFormComponent, ClienteCrudComponent],
-  imports: [CommonModule, ClientesRoutingModule, FormsModule],
+  declarations: [ClienteListComponent, ClienteFormComponent, ClienteCrudComponent, FilterPipe],
+  imports: [CommonModule, ClientesRoutingModule, FormsModule, HttpClientModule, HttpModule],
   providers: [ClientesService]
 })
 export class ClientesModule { }
