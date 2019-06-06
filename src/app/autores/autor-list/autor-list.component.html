@@ -1,3 +1,34 @@
-<p>
-  autor-list works!
-</p>
+<input type="text" [(ngModel)]="searchText" class="form-control" placeholder="O que voce esta procurando ?" />
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>C&oacute;digo</th>
+      <th>Nome</th>
+      <th>Cargo</th>
+      <th>Endere&ccedil;o</th>
+      <th>Cidade</th>
+      <th>CEP</th>
+      <th>Pa&iacute;s</th>
+      <th>Telefone</th>
+      <th>Fax</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let autorTabela of autores">
+      <a routerLink="autorTabela.codigo">
+        <td>{{autorTabela.codigo}}</td>
+      </a>
+      <td>{{autorTabela.nome}}</td>
+      <td>{{autorTabela.cargo}}</td>
+      <td>{{autorTabela.endereco}}</td>
+      <td>{{autorTabela.cidade}}</td>
+      <td>{{autorTabela.cep}}</td>
+      <td>{{autorTabela.pais}}</td>
+      <td>{{autorTabela.telefone}}</td>
+      <td>{{autorTabela.fax}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<span [hidden]="(autores).length != 0">Infelizmente nao temos o que voce esta procurando</span>

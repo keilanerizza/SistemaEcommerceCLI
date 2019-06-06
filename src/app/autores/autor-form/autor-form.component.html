@@ -1,3 +1,36 @@
-<p>
-  autor-form works!
-</p>
+<!-- <button type="button" class="btn btn-primary" (click)="novo()">Novo</button>
+<button type="button" class="btn btn-success" (click)="salvar()">Salvar</button>
+<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>
+<button type="button" class="btn btn-warning" (click)="pesquisar()" style="color:white">Pesquisar</button>
+<br> <br> -->
+
+<form class="was-validated form-row" #cadastro="ngForm" (ngSubmit)="salvar()">
+  <div class="col-md-1 mb-3">
+      <label for="txtCodigo">C&oacute;digo</label>
+      <input type="text" [(ngModel)]="autor.codigo" class="form-control" id="txtCodigo" name="txtCodigo" disabled>
+  </div>
+
+  <div class="col-md-4 mb-3">
+      <label for="nome">Nome</label>
+      <input type="text" #nome="ngModel" minlength="5" [(ngModel)]="autor.nome" class="form-control is-valid"
+          id="nome" name="nome" required>
+      <div [hidden]="nome.valid" class="invalid-feedback">
+          Digite o nome.
+      </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+      <label for="categoria">Categoria</label>
+      <input type="text" #categoria="ngModel" minlength="5" [(ngModel)]="autor.categoria" class="form-control is-valid"
+          id="categoria" name="categoria" required>
+      <div [hidden]="categoria.valid" class="invalid-feedback">
+          Digite a categoria.
+      </div>
+  </div>
+
+  <div class="container">
+      <button type="submit" class="btn btn-success" [disabled]="cadastro.form.invalid">Enviar</button>    
+      <button type="button" class="btn btn-danger" [hidden]="isNew" (click)="excluir()">Excluir</button>
+      <button type="button" class="btn btn-warning" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>
