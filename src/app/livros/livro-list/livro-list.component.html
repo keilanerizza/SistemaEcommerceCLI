@@ -1,3 +1,34 @@
-<p>
-  livro-list works!
-</p>
+<input type="text" [(ngModel)]="searchText" class="form-control" placeholder="O que voce esta procurando ?" />
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>C&oacute;digo</th>
+      <th>Nome</th>
+      <th>Cargo</th>
+      <th>Endere&ccedil;o</th>
+      <th>Cidade</th>
+      <th>CEP</th>
+      <th>Pa&iacute;s</th>
+      <th>Telefone</th>
+      <th>Fax</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let livroTabela of livros">
+      <a routerLink="livroTabela.codigo">
+        <td>{{livroTabela.codigo}}</td>
+      </a>
+      <td>{{livroTabela.nome}}</td>
+      <td>{{livroTabela.cargo}}</td>
+      <td>{{livroTabela.endereco}}</td>
+      <td>{{livroTabela.cidade}}</td>
+      <td>{{livroTabela.cep}}</td>
+      <td>{{livroTabela.pais}}</td>
+      <td>{{livroTabela.telefone}}</td>
+      <td>{{livroTabela.fax}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<span [hidden]="(livros).length != 0">Infelizmente nao temos o que voce esta procurando</span>
