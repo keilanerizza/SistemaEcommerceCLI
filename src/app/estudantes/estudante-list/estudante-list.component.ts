@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EstudantesService } from '../estudantes.service';
+import { Estudante } from '../estudante';
 
 @Component({
   selector: 'app-estudante-list',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstudanteListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private autorService: EstudantesService) { }
+
+  estudantes: Estudante[] = [];
 
   ngOnInit() {
+
+    this.autorService.getAll()
+      .subscribe(data => this.estudantes = data, err => {
+        alert('Aconteceu um erro!' + err);
+        this.autorService.estudantesChanged.subscribe(
+          (observable: any) => observable.subscribe(
+            data => this.estudantes = data
+          )
+        );
+      })
   }
 
 }

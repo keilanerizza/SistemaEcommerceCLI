@@ -1,3 +1,32 @@
-<p>
-  estudante-list works!
-</p>
+<input type="text" [(ngModel)]="searchText" class="form-control" placeholder="O que voce esta procurando ?" />
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>C&oacute;digo</th>
+      <th>Nome</th>
+      <th>Curso</th>
+      <th>Endere&ccedil;o</th>
+      <th>Cidade</th>
+      <th>CEP</th>
+      <th>Pa&iacute;s</th>
+      <th>Telefone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let estudanteTabela of estudantes">
+      <a routerLink="estudanteTabela.codigo">
+        <td>{{estudanteTabela.codigo}}</td>
+      </a>
+      <td>{{estudanteTabela.nome}}</td>
+      <td>{{estudanteTabela.curso}}</td>
+      <td>{{estudanteTabela.endereco}}</td>
+      <td>{{estudanteTabela.cidade}}</td>
+      <td>{{estudanteTabela.cep}}</td>
+      <td>{{estudanteTabela.pais}}</td>
+      <td>{{estudanteTabela.telefone}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<span [hidden]="(estudantes).length != 0">Infelizmente nao temos o que voce esta procurando</span>
