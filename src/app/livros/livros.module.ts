@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LivroFormComponent } from './livro-form/livro-form.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [LivroFormComponent],
   imports: [
     CommonModule
   ]
