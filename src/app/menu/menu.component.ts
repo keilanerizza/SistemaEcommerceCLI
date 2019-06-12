@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginServiceService } from '../login/login-service.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: LoginServiceService) { }
+
+  private showNavBar: boolean = false;
 
   ngOnInit() {
+    this.authService.showNavBarEmitter.subscribe(
+      (mode: boolean) => {
+        if (mode !== null) {
+          this.showNavBar = mode;
+        }
+      }
+    )
+  }
+
+  isAuth() {
+    return this.authService.isAuthenticated();
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
 }
