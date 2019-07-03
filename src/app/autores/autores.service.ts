@@ -15,7 +15,7 @@ import 'rxjs/add/operator/catch'; */
 })
 export class AutoresService {
 
-  private url: string = 'http://localhost:8080/autores';
+  private url: string = 'http://localhost:3000/autores';
 
   autoresChanged = new EventEmitter<Observable<Autor[]>>();
 

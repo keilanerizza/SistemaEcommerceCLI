@@ -15,7 +15,7 @@ import 'rxjs/add/operator/catch'; */
 })
 export class EstudantesService {
 
-  private url: string = 'http://localhost:8080/estudantes';
+  private url: string = 'http://localhost:3000/estudantes';
 
   estudantesChanged = new EventEmitter<Observable<Estudante[]>>();
 
